@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class CarouselPage extends StatefulWidget {
+  const CarouselPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<CarouselPage> createState() => _CarouselPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _CarouselPageState extends State<CarouselPage> {
   final _pageController = PageController();
 
   @override
@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final page = _pageController.page ?? 0;
+    //final page = _pageController.page ?? 0;
 
     return Scaffold(
         appBar: AppBar(
@@ -81,23 +81,25 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.black.withOpacity(0.5),
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          for (int i = 0; i < 4; i++)
-                            Container(
-                              width: 13,
-                              height: 13,
-                              margin: const EdgeInsets.all(3),
-                              decoration: BoxDecoration(
-                                color: page.round() == i
-                                    ? Colors.white
-                                    : Colors.grey,
-                                borderRadius: BorderRadius.circular(10),
+                      child: Builder(builder: (context) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            for (int i = 0; i < 4; i++)
+                              Container(
+                                width: 13,
+                                height: 13,
+                                margin: const EdgeInsets.all(3),
+                                decoration: BoxDecoration(
+                                  color: _pageController.page?.round() == i
+                                      ? Colors.white
+                                      : Colors.grey,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
                               ),
-                            ),
-                        ],
-                      ),
+                          ],
+                        );
+                      }),
                     ),
                   ),
                 ),
