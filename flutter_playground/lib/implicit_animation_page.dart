@@ -8,9 +8,7 @@ class ImplicitAnimationPage extends StatefulWidget {
 }
 
 class _ImplicitAnimationPageState extends State<ImplicitAnimationPage> {
-  double size = 200.0;
-  Color color = Colors.red;
-  BorderRadius borderRadius = BorderRadius.zero;
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -19,22 +17,34 @@ class _ImplicitAnimationPageState extends State<ImplicitAnimationPage> {
         child: GestureDetector(
           onTap: () {
             setState(() {
-              size = size == 200.0 ? 600.0 : 200.0;
-              color = color == Colors.red ? Colors.blue : Colors.red;
-              borderRadius = borderRadius == BorderRadius.zero
-                  ? BorderRadius.circular(300)
-                  : BorderRadius.zero;
+              isLoading = !isLoading;
             });
           },
           child: AnimatedContainer(
-            duration: const Duration(seconds: 1),
-            //color: Colors.red,
-            width: size,
-            height: size,
+            duration: const Duration(milliseconds: 700),
+            curve: Curves.fastOutSlowIn,
+            width: isLoading ? 70.0 : 300.0,
+            height: 70.0,
             decoration: BoxDecoration(
-              color: color,
-              borderRadius: borderRadius,
+              color: Colors.blue,
+              borderRadius: BorderRadius.circular(isLoading ? 35.0 : 10.0),
             ),
+            child: isLoading
+                ? const Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                    ),
+                  )
+                : const Center(
+                    child: Text(
+                      'ENTRAR',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.0,
+                      ),
+                    ),
+                  ),
           ),
         ),
       ),
