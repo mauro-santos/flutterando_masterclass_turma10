@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ImplicitAnimationPage extends StatefulWidget {
-  const ImplicitAnimationPage({super.key});
+class AnimatedContainerPage extends StatefulWidget {
+  const AnimatedContainerPage({super.key});
 
   @override
-  State<ImplicitAnimationPage> createState() => _ImplicitAnimationPageState();
+  State<AnimatedContainerPage> createState() => _AnimatedContainerPageState();
 }
 
-class _ImplicitAnimationPageState extends State<ImplicitAnimationPage> {
+class _AnimatedContainerPageState extends State<AnimatedContainerPage> {
   bool isLoading = false;
 
   @override
